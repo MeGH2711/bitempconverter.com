@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inclusive Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand d-flex justify-content-center w-100">TempConvert</a>
+        </div>
+    </nav>
+    <div class="container" style="height: 70.5vh;">
+        <p class="text-center my-3">Welcome to our Temperature Converter: Where you can easily convert temperatures with
+            just a few clicks!</p>
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-lg-4 my-2">
+                        <select id="inputUnit" class="form-select" aria-label="Default select example">
+                            <option selected>Select Unit</option>
+                            <option value="cel">Celsius</option>
+                            <option value="fah">Fahrenheit</option>
+                            <option value="kel">Kelvin</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-8 my-2">
+                        <input id="inputTemp" type="text" class="form-control" placeholder="Enter Temperature">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 text-center d-flex justify-content-center align-items-center">
+                <span>Convert to</span>
+            </div>
+            <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-lg-4 my-2">
+                        <select id="outputUnit" class="form-select" aria-label="Default select example">
+                            <option selected>Select Unit</option>
+                            <option value="cel">Celsius</option>
+                            <option value="fah">Fahrenheit</option>
+                            <option value="kel">Kelvin</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-8 my-2">
+                        <input id="outputTemp" type="text" class="form-control" disabled value="Converted Temperature">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 text-center my-3">
+            <button class="btn btn-dark" onclick="convertTemperature()">Convert</button>
+        </div>
+        <p class="text-center">Welcome to our TempConvert website, your go-to destination for hassle-free temperature conversions.
+            Whether you need to switch between Celsius, Fahrenheit, or Kelvin, our user-friendly tool makes it
+            effortless. Say goodbye to complex calculations and hello to simplicity – with just a few clicks, you can
+            seamlessly convert temperatures. Whether you're a weather enthusiast, a scientist, or simply planning a
+            trip, our Temperature Converter is here to provide you with accurate and convenient temperature conversions.
+            Explore the world of temperature transformation with ease, right here on our website.</p>
+    </div>
+    <footer class="bg-light text-center text-dark">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: #F8F9FA">
+            Copyright © 2023 Megh Patel. All rights reserved.
+        </div>
+        <div class="text-center p-2" style="background-color: #F8F9FA">
+            <sub>Made during the Internship of <a
+                    onclick="window.open('https://bharatintern.live/b/i/index.html','_blank')"
+                    style="text-decoration: none; cursor: default;"><b>Bharat Intern</b></a></sub>
+        </div>
+        <div class="text-center p-2" style="background-color: #F8F9FA">
+            <sub>Made with &#10084; by <a
+                    onclick="window.open('https://megh2711.github.io/meghthebaadal.com/','_blank')"
+                    style="text-decoration: none;"><b>Megh
+                        Patel</b></a></sub>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        function convertTemperature() {
+            const inputUnit = document.getElementById("inputUnit").value;
+            const outputUnit = document.getElementById("outputUnit").value;
+            const inputTemp = parseFloat(document.getElementById("inputTemp").value);
+
+            let result;
+            if (inputUnit === "cel" && outputUnit === "fah") {
+                result = (inputTemp * 9 / 5) + 32;
+            } else if (inputUnit === "cel" && outputUnit === "kel") {
+                result = inputTemp + 273.15;
+            } else if (inputUnit === "fah" && outputUnit === "cel") {
+                result = (inputTemp - 32) * 5 / 9;
+            } else if (inputUnit === "fah" && outputUnit === "kel") {
+                result = ((inputTemp - 32) * 5 / 9) + 273.15;
+            } else if (inputUnit === "kel" && outputUnit === "cel") {
+                result = inputTemp - 273.15;
+            } else if (inputUnit === "kel" && outputUnit === "fah") {
+                result = ((inputTemp - 273.15) * 9 / 5) + 32;
+            } else {
+                result = inputTemp;
+            }
+            document.getElementById("outputTemp").value = result;
+        }
+    </script>
+</body>
+
+</html>
